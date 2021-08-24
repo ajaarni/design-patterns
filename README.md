@@ -1,1 +1,3 @@
-# Strategy-Design-Pattern
+# design-pattern
+Anton Aarnink
+CSCE 247 002
