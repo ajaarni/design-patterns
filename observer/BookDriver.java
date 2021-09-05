@@ -1,4 +1,8 @@
 package observer;
+/**
+ * @author Anton Aarnink
+ * CSCE 247 002
+ */
 
 /**
  * Runs our Best Seller Book Program
