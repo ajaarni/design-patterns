@@ -27,4 +27,9 @@ public class Book  {
         return authorLastName;
     }
 
+    public String toString() {
+        return authorFirstName;
+        
+    }
+
 }

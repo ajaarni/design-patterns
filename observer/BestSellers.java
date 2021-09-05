@@ -12,25 +12,30 @@ public class BestSellers implements Subject {
 
     @Override
     public void registerObserver(Observer observer) {
-        // TODO Auto-generated method stub
-        
+        observers.add(observer);        
     }
 
     @Override
     public void removeObserver(Observer observer) {
-        // TODO Auto-generated method stub
+        observers.remove(observer);
         
     }
 
     @Override
-    public void notifyObserver() {
-        // TODO Auto-generated method stub
+    public void notifyObserver(Book book) {
+        for(Observer observer : observers) {
+            observer.update(book);
+        }
         
     }
 
     public void addBook(Book book) {
-        
+        bestSellers.add(book);
+
+
     }
+
+    
 
     
 }
