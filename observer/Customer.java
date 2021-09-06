@@ -24,6 +24,7 @@ public class Customer implements Observer {
         this.firstName = firstName;
         this.lastName = lastName;
         this.subject = subject;
+        
     }
 
     @Override
@@ -40,13 +41,13 @@ public class Customer implements Observer {
      * removes the extra books on the wish list keeping it at 5
      */
     public void update(Book book) {
+        wishList.add(book);
         if(wishList.size() > 5) {
             for( int i = 5; i < 10; i++) {
                 wishList.remove(i);
             }
         }
 
-        
     }
 
     
