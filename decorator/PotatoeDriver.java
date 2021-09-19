@@ -9,6 +9,7 @@ public class PotatoeDriver {
      */
     public void run() {
         Character potatoe = new PotatoeHead();
+        potatoe.draw();
         Character eyePotatoe = new Eyes(potatoe);
         Character eyeNosePotatoe = new Nose(eyePotatoe);
         Character mouthEyeNosePotatoe = new Mouth(eyeNosePotatoe);

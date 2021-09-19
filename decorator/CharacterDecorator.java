@@ -3,7 +3,6 @@ package decorator;
 public abstract class CharacterDecorator extends Character{
     protected Character character;
     /**
-     * 
      * @param character instance of a type of character 
      */
     public CharacterDecorator(Character character) {
