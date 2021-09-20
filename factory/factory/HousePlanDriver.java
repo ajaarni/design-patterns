@@ -1,3 +1,4 @@
+package factory;
 /**
  * Runs the housing plans program
  */
