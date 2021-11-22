@@ -9,13 +9,18 @@ public class Hard implements State {
         this.game = game;
         this.rand = new Random();
     }
-
+    /**
+     * gets random number less than or equal to 100
+     */
     @Override
     public int getNum() {
         int upper = 100;
         return rand.nextInt(upper);
     }
 
+    /**
+     * gets a random opperator from array of operators 
+     */
     @Override
     public String getOperation() {
         String[] arr = {"+","-","*","/"};
@@ -23,11 +28,17 @@ public class Hard implements State {
         return arr[select];
     }
 
+    /**
+     * keeps game mode at hard
+     */
     @Override
     public void levelUp() {
         System.out.println("You are doing so well!!!");
     }
 
+    /**
+     * move game mode to easy 
+     */
     @Override
     public void levelDown() {
         game.setState(game.getMediumState());

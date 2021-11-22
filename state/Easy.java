@@ -11,12 +11,18 @@ public class Easy implements State {
 
     }
 
+    /**
+     * gets random number less than or equal to 10
+     */
     @Override
     public int getNum() {
         int upper = 10;
         return rand.nextInt(upper);
     }
 
+     /**
+     * gets a random opperator from array of operators 
+     */
     @Override
     public String getOperation() {
         String[] arr = {"+","-"};
@@ -24,6 +30,10 @@ public class Easy implements State {
         return arr[select];
     }
 
+
+    /**
+     * move game mode to medium
+     */
     @Override
     public void levelUp() {
         game.setState(game.getMediumState());
@@ -31,6 +41,9 @@ public class Easy implements State {
         
     }
 
+    /**
+     * keeps game mode at easy 
+     */
     @Override
     public void levelDown() {
         System.out.println("You seem to be struggling, you may want to study.");
