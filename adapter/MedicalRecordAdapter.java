@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,7 +33,7 @@ public class MedicalRecordAdapter implements MedicalRecord{
 
     @Override
     public Gender getGender() {
-        return Gender.valueOf(record.getGender());
+        return Gender.valueOf(record.getGender().toUpperCase());
         
     }
 
@@ -43,7 +44,7 @@ public class MedicalRecordAdapter implements MedicalRecord{
     }
 
     private Date dateGen(int year, int month, int day) {
-        Calendar calendar = new GregorianCalendar(year, month, day);
+        Calendar calendar = new GregorianCalendar(year, month - 1, day);
         return calendar.getTime();
 
     }
@@ -66,8 +67,8 @@ public class MedicalRecordAdapter implements MedicalRecord{
             String[] visSpace = visCol[1].split(" ");
 
             year = Integer.parseInt(visSpace[3]);
-            month = Integer.parseInt(visSpace[2]);
-            day = Integer.parseInt(visSpace[1]);
+            month = Integer.parseInt(visSpace[2].substring(0,1));
+            day = Integer.parseInt(visSpace[1].substring(0,1));
 
             String[] wellCol = wellLine.split(": ");
             if(wellCol[1].equalsIgnoreCase("true")) {
@@ -77,28 +78,30 @@ public class MedicalRecordAdapter implements MedicalRecord{
             String[] descCol = descLine.split(" ");
             description = descCol[1];
             visits.add(new Visit(dateGen(year, month, day),well, description));
-            
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-        return null;
+        return visits;
     }
 
     public String toString() {
-        return null;
+        SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy");
+        String bday = date.format(getBirthday());
+        String gender = (getGender().toString().substring(0, 1).toUpperCase() + getGender().toString().substring(1).toLowerCase());
+
+        String result = "******* " + getFirstName() + " " + getLastName() + " *******\n";
+        result += "Birthday: " + bday + "\n";
+        result += "Gender: " + gender + "\n";
+        result += "Visit History: \n";
+        
+        if(getVisitHistory().size() == 0) {
+            result += "New Patient";
+        } else {
+            for(Visit visit : getVisitHistory()) {
+                result += visit.toString() + "\n";
+            }
+        }
+        return result;
     }
+    
 
     
     
