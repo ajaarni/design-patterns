@@ -12,6 +12,10 @@ public class MedicalRecordAdapter implements MedicalRecord{
         this.record = record;
     }
 
+    /**
+     * get the first name by saving the whole name to a array then spliting and returning the
+     * value at index 0
+     */
     @Override
     public String getFirstName() {
         String name = record.getName();
@@ -19,6 +23,10 @@ public class MedicalRecordAdapter implements MedicalRecord{
         return parts[0];
     }
 
+    /**
+     * get the first name by saving the whole name to a array then spliting and returning the
+     * value at index 1
+     */
     @Override
     public String getLastName() {
         String name = record.getName();
@@ -26,29 +34,49 @@ public class MedicalRecordAdapter implements MedicalRecord{
         return parts[1];
     }
 
+    /**
+     * call the get birthdate method and gets the date for the record instance
+     */
     @Override
     public Date getBirthday() {
         return record.getBirthdate();
     }
 
+    /**
+     * Coverts the String to enum 
+     * https://www.baeldung.com/java-string-to-enum
+     */
     @Override
     public Gender getGender() {
         return Gender.valueOf(record.getGender().toUpperCase());
-        
     }
 
+    /**
+     * uses the addhistory mothd to add the values stroed in visit as history 
+     */
     @Override
     public void addVisit(Date date, boolean well, String description) {
         record.addHistory(date, well, description);
         
     }
 
+    /**
+     * Helper class that generates the date 
+     * @param year 
+     * @param month
+     * @param day
+     * @return month day and year 
+     */
     private Date dateGen(int year, int month, int day) {
         Calendar calendar = new GregorianCalendar(year, month - 1, day);
         return calendar.getTime();
 
     }
 
+    /**
+     * gets both the date and the descriptiion on visits saved to array list and parses them 
+     * then saves them to another array list returnng the second array list 
+     */
     @Override
     public ArrayList<Visit> getVisitHistory() {
         ArrayList<Visit> visits = new ArrayList<Visit>();
@@ -82,6 +110,10 @@ public class MedicalRecordAdapter implements MedicalRecord{
         return visits;
     }
 
+
+    /**
+     * formats the date and the birthday then returns the information in the medical record format
+     */
     public String toString() {
         SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy");
         String bday = date.format(getBirthday());
